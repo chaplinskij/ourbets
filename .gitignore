@@ -1,0 +1,8 @@
+*.pyc
+*.swp
+*.sqlite3
+*.log
+*~
+env/
+.idea/
+ourbets/settings/local.py

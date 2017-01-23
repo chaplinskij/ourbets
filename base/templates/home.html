@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hello!!!</h1>
+{% if user.username %}
+   <div>
+      <ul>
+         <li><a href="{% url 'logout' %}">logout</a></li>
+         <li><a href="{% url 'settings' %}">settings</a></li>
+</ul>
+   </div>
+   <h3>User: {{ user.get_full_name }}</h3>
+   <h3>Email: {{ user.email }}</h3>
+   <h3>Username: {{ user.username }}</h3>
+{% else %}
+   <div><a href="{% url 'login' %}">login</a></div>
+{% endif %}
+
+
+{% endblock %}
