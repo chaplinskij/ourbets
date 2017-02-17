@@ -17,10 +17,11 @@
 {% endblock %}
 
 {% block body %}
+   {% block header %}
+   {% include '_topbar.html' %}
+   {% endblock %}
 
-   {% include '_header.html' %}
-
-   <div class="container" id="home">
+   <div class="container" id="home  ">
 
    {% block content %}
    {% endblock %}

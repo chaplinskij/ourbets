@@ -1,7 +1,4 @@
-{% extends 'base.html' %}
-
-{% block body %}
-  <h2>Settings</h2>
+<h1 class="page-header">Social accounts</h1>
 
   <h3>GitHub</h3>
   {% if github_login %}
@@ -82,4 +79,3 @@
   {% else %}
     <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
   {% endif %}
-{% endblock %}

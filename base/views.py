@@ -25,7 +25,7 @@ class LiveScoreView(TemplateView):
    template_name = 'live.html'
 
 class SettingsView(TemplateView):
-   template_name = 'settings.html'
+   template_name = 'profile.html'
 
    def get_context_data(self, **kwargs):
       ctx = super(SettingsView, self).get_context_data(**kwargs)

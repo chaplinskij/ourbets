@@ -9,8 +9,9 @@
                <div class="row">
                   <div class="col-md-12">
                      <ul class="kode-userinfo">
+                        <li><a href="{% url 'home' %}" class="text-danger"><i class="fa fa-home "></i>Home</a></li>
                         <li><a href="{% url 'livescore' %}" class="text-danger"><i class="fa fa-clock-o "></i>Online Rresult</a></li>
-                     {% if user.username %}
+                     {% if user %}
                         <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> My Account</a></li>
                         <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>LogOut</a></li>
                      {% else %}
@@ -23,31 +24,5 @@
                </div>
             </div>
          </div>
-         <!--// TopBaar //-->
-         <div class="header-8">
-            <div class="container">
-               <!--LOGO START-->
-               <div class="logo">
-                  <a href="{% url 'home' %}">
-                     <img src="{% static 'img/logo.svg' %}" alt="">
-                  </a>
-               </div>
-               <!--LOGO END-->
-               <!--NAVIGATION START-->
-               <div class="navigation">
-                  <ul>
-                     <li><a href="#home">Home</a></li>
-                     <li><a href="#about">About</a></li>
-                     <li><a href="#top_matches">Top matches</a></li>
-                     <li class="last"><a href="#">contact</a></li>
-                  </ul>
-               </div>
-               <!--NAVIGATION END-->
-            </div>
-         </div>
       </header>
-      <div class="subheader">
-{#         <img src="{% static 'img/toolbar.png' %}" alt="">#}
-      </div>
-      <!--// SubHeader //-->
    </div>
