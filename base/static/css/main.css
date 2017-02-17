@@ -12,7 +12,7 @@
 .topbar {
 	float: left;
 	width: 100%;
-	background-color: #449d44;
+	background-color: #98d82a;
 	position: relative;
 	font-size: 13px;
 }
@@ -358,8 +358,8 @@ h2{
 .carousel{
 	height: 300px;
     margin: 20px auto 0;
-    position: absolute;
-	width: 80%;
+    /*position: absolute;*/
+	width: 100%;
 	z-index: 100
 }
 .carousel-fade .carousel-inner .item {
@@ -394,6 +394,8 @@ h2{
 	right: 0px;
 	left: auto;
 	width: 200px;
+	padding-bottom: 0px;
+	margin-right: 10px;
 }
 
 .divider {
@@ -511,6 +513,48 @@ input::-webkit-inner-spin-button {
 .game__score-button:hover {
 	 background-color: rgba(255, 255, 255, 0);
 	 color: black;
+}
+.game__competition_img {
+	width: 64px;
+	height: 64px;
+	background-size: contain!important;
+}
+.about {
+	background: url(../img/background-about.png) no-repeat;
+	background-size: contain;
+	height:405px;
+	margin: 20px auto 0;
+	position: relative;
+	width: 100%;
+}
+.about__item {
+	position: absolute;
+	width: 280px
+}
+.about__item-left {
+	left: 0;
+	bottom: 240px;
+}
+.about__item-center {
+	left: 520px;
+	top: 250px;
+}
+.about__item-right {
+	right: 0px;
+	bottom: 290px;
+}
+.about__title {
+	display: inline-block;
+	font-size: 24px;
+	padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.about__title-number {
+	color: #61BF2C;
+}
+.about__text {
+	text-align: justify;
 }
 @media screen and (max-width: 900px) {
 	.game__score-input{

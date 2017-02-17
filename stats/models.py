@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
+from easy_thumbnails.files import get_thumbnailer
 from django.utils.translation import ugettext_lazy as _
+from django.templatetags.static import static
 from django.db.models import (
    Model, CharField, ForeignKey, PositiveIntegerField, URLField, BooleanField,
    IntegerField, DateTimeField, DecimalField, ManyToManyField, TextField,
@@ -46,6 +48,9 @@ class Competition(Model):
    region = ForeignKey(Region, related_name='competitions')
    flag = ForeignKey(StaticURL, related_name='competition_flags')
 
+   def flag_url(self):
+      return self.flag.url_name
+
    def __unicode__(self):
       return self.name
 
@@ -85,6 +90,24 @@ class Venue(Model):
    cover = ImageField(_('cover'), upload_to='venues', blank=True, null=True)
    rectangle = ImageRatioField('cover', '1200x300')
 
+   def image_url(self, field):
+      if not self.cover:
+         return None
+
+      f = self._meta.get_field(field)
+      return get_thumbnailer(self.cover).get_thumbnail({
+         'size': (f.width, f.height),
+         'box': getattr(self, field),
+         'crop': True
+      }).url
+
+   def cover_url(self):
+      return self.image_url('rectangle') if self.cover else self.default_cover()
+
+   def default_cover(self):
+      return static('img/arena3.png')
+
+
    def __unicode__(self):
       return self.name
 
@@ -102,6 +125,13 @@ class Team(Model):
    venue = ForeignKey(Venue, null=True, blank=True)
    flag = ForeignKey(StaticURL, related_name='team_flags', null=True, blank=True)
    shirt = ForeignKey(StaticURL, related_name='team_shirts', null=True, blank=True)
+   cover = ImageField(_('cover'), upload_to='teams', blank=True, null=True)
+
+   def cover_url(self):
+      return self.cover.url if self.cover else self.default_cover()
+
+   def default_cover(self):
+      return static('img/default_cover_team.png')
 
    def __unicode__(self):
       return self.name
@@ -157,6 +187,9 @@ class Match(Model):
    round = ForeignKey(Round, null=True, blank=True)
    venue = ForeignKey(Venue, null=True, blank=True)
    outcome = ForeignKey(Outcome, null=True, blank=True)
+
+   def __unicode__(self):
+      return '%s - %s (%s)' % (self.home_team.name, self.away_team.name, self.start)
 
 
 class CrowdscoresResponse(Model):

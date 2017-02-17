@@ -1,4 +1,5 @@
-{% load staticfiles %}
+{% load i18n cropping staticfiles %}
+<h1 id="top_matches">TOP MATCHES</h1>
 <div id="myCarousel" class="carousel slide carousel-fade " data-interval="4000" data-ride="carousel">
 
    <!-- Индикаторы для карусели -->
@@ -13,85 +14,137 @@
   <!-- Слайды карусели -->
   <div class="carousel-inner">
     <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->
-    <div class="active item">
-       <div class="game__block">
-          <div class="game__img game__img-left" style="background-image: url('{% static 'img/arsenal.png' %}')"></div>
-          <form class="game__score">
-            <div>
-              <input type="number" value="" class="game__score-input">
-              <span class="game__score-colon">:</span>
-              <input type="number" value="" class="game__score-input">
-            </div>
-            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
-          </form>
-          <div class="game__img game__img-right" style="background-image: url('{% static 'img/bayern.png' %}')"></div>
+     {% for featured_match in featured_matches %}
+
+     <div class="{% if forloop.counter == 1 %}active{% endif %} item">
+        <div class="game__block">
+           <div class="game__img game__img-left" style="background-image: url('{{ featured_match.match.home_team.cover_url }}')"></div>
+           <form class="game__score">
+              <div>
+                 <input type="number" value="" class="game__score-input">
+                 <span class="game__score-colon">:</span>
+                 <input type="number" value="" class="game__score-input">
+              </div>
+              <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
+           </form>
+           <div class="game__img game__img-right" style="background-image: url('{{ featured_match.match.away_team.cover_url }}')"></div>
         </div>
-       <img src="{% static 'img/bg-related.png' %}" class=" related_match">
-          <img src="{% static 'img/arena1.jpg' %}" class="img-responsive related_img">
-       <div class="carousel-caption">
-          <h3>Team1</h3>
-          <div class="divider"><div class="divider-content">VS</div></div>
-          <h3>Team2</h3>
-          <p>12 FEBRUARY 2017</p>
-          <p>DniproArena</p>
-       </div>
-    </div>
-
-
-    <!-- Слайд №2 -->
-    <div class="item">
-       <div class="game__block">
-          <div class="game__img game__img-left"></div>
-          <form class="game__score">
-            <div>
-              <input type="number" value="" class="game__score-input">
-              <span class="game__score-colon">:</span>
-              <input type="number" value="" class="game__score-input">
-            </div>
-            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
-          </form>
-          <div class="game__img game__img-right"></div>
+        <img src="{% static 'img/bg-related.png' %}" class=" related_match">
+        <img src="{{ featured_match.match.venue.cover_url }}" class="img-responsive related_img">
+        <div class="carousel-caption">
+           <div class="game__competition_img center-block" style="background-image: url('{{ featured_match.match.competition.flag_url }}');"></div>
+           <h3>{{ featured_match.match.home_team.name}}</h3>
+           <div class="divider"><div class="divider-content">VS</div></div>
+           <h3>{{ featured_match.match.away_team.name }}</h3>
+           <p>12 FEBRUARY 2017</p>
+           <p>{{ featured_match.match.venue.name }}</p>
         </div>
-
-       <img src="{% static 'img/bg-related.png' %}" class=" related_match">
-       <img src="{% static 'img/arena2.jpg' %}" class="img-responsive related_img">
-
-       <div class="carousel-caption">
-        <h3>Team3</h3>
-         <div class="divider"><div class="divider-content">VS</div></div>
-         <h3>Team4</h3>
-         <p>12 FEBRUARY 2017</p>
-         <p>DniproArena</p>
-       </div>
-    </div>
-    <!-- Слайд №3 -->
-    <div class="item">
-       <div class="game__block">
-          <div class="game__img game__img-left"></div>
-          <form class="game__score">
-            <div>
-              <input type="number" value="" class="game__score-input">
-              <span class="game__score-colon">:</span>
-              <input type="number" value="" class="game__score-input">
-            </div>
-            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
-          </form>
-          <div class="game__img game__img-right"></div>
-        </div>
-       <img src="{% static 'img/bg-related.png' %}" class=" related_match">
-          <img src="{% static 'img/arena3.jpg' %}" class="img-responsive related_img">
-       <div class="carousel-caption">
-          <h3>Team5</h3>
-          <div class="divider"><div class="divider-content">VS</div></div>
-          <h3>Team6</h3>
-          <p>12 FEBRUARY 2017</p>
-          <p>DniproArena</p>
-       </div>
-    </div>
+     </div>
+  {% endfor %}
   </div>
+
+
   <!-- Навигация для карусели -->
   <!-- Кнопка, осуществляющая переход на предыдущий слайд с помощью атрибута data-slide="prev" -->
   <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
   <!-- Кнопка, осуществляющая переход на следующий слайд с помощью атрибута data-slide="next" -->
   <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
 </div>
+
+
+{#<div id="myCarousel" class="carousel slide carousel-fade " data-interval="4000" data-ride="carousel">#}
+{##}
+{#   <!-- Индикаторы для карусели -->#}
+{#  <ol class="carousel-indicators">#}
+{#    <!-- Перейти к 0 слайду карусели с помощью соответствующего индекса data-slide-to="0" -->#}
+{#    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>#}
+{#    <!-- Перейти к 1 слайду карусели с помощью соответствующего индекса data-slide-to="1" -->#}
+{#    <li data-target="#myCarousel" data-slide-to="1"></li>#}
+{#    <!-- Перейти к 2 слайду карусели с помощью соответствующего индекса data-slide-to="2" -->#}
+{#    <li data-target="#myCarousel" data-slide-to="2"></li>#}
+{#  </ol>#}
+{#  <!-- Слайды карусели -->#}
+{#  <div class="carousel-inner">#}
+{#    <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->#}
+{#    <div class="active item">#}
+{#       <div class="game__block">#}
+{#          <div class="game__img game__img-left" style="background-image: url('{% static 'img/arsenal.png' %}')"></div>#}
+{#          <form class="game__score">#}
+{#            <div>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#              <span class="game__score-colon">:</span>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#            </div>#}
+{#            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">#}
+{#          </form>#}
+{#          <div class="game__img game__img-right" style="background-image: url('{% static 'img/bayern.png' %}')"></div>#}
+{#        </div>#}
+{#       <img src="{% static 'img/bg-related.png' %}" class=" related_match">#}
+{#          <img src="{% static 'img/arena1.jpg' %}" class="img-responsive related_img">#}
+{#       <div class="carousel-caption">#}
+{#          <h3>Team1</h3>#}
+{#          <div class="divider"><div class="divider-content">VS</div></div>#}
+{#          <h3>Team2</h3>#}
+{#          <p>12 FEBRUARY 2017</p>#}
+{#          <p>DniproArena</p>#}
+{#       </div>#}
+{#    </div>#}
+{##}
+{##}
+{#    <!-- Слайд №2 -->#}
+{#    <div class="item">#}
+{#       <div class="game__block">#}
+{#          <div class="game__img game__img-left"></div>#}
+{#          <form class="game__score">#}
+{#            <div>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#              <span class="game__score-colon">:</span>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#            </div>#}
+{#            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">#}
+{#          </form>#}
+{#          <div class="game__img game__img-right"></div>#}
+{#        </div>#}
+{##}
+{#       <img src="{% static 'img/bg-related.png' %}" class=" related_match">#}
+{#       <img src="{% static 'img/arena2.jpg' %}" class="img-responsive related_img">#}
+{##}
+{#       <div class="carousel-caption">#}
+{#        <h3>Team3</h3>#}
+{#         <div class="divider"><div class="divider-content">VS</div></div>#}
+{#         <h3>Team4</h3>#}
+{#         <p>12 FEBRUARY 2017</p>#}
+{#         <p>DniproArena</p>#}
+{#       </div>#}
+{#    </div>#}
+{#    <!-- Слайд №3 -->#}
+{#    <div class="item">#}
+{#       <div class="game__block">#}
+{#          <div class="game__img game__img-left"></div>#}
+{#          <form class="game__score">#}
+{#            <div>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#              <span class="game__score-colon">:</span>#}
+{#              <input type="number" value="" class="game__score-input">#}
+{#            </div>#}
+{#            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">#}
+{#          </form>#}
+{#          <div class="game__img game__img-right"></div>#}
+{#        </div>#}
+{#       <img src="{% static 'img/bg-related.png' %}" class=" related_match">#}
+{#          <img src="{% static 'img/arena3.jpg' %}" class="img-responsive related_img">#}
+{#       <div class="carousel-caption">#}
+{#          <h3>Team5</h3>#}
+{#          <div class="divider"><div class="divider-content">VS</div></div>#}
+{#          <h3>Team6</h3>#}
+{#          <p>12 FEBRUARY 2017</p>#}
+{#          <p>DniproArena</p>#}
+{#       </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <!-- Навигация для карусели -->#}
+{#  <!-- Кнопка, осуществляющая переход на предыдущий слайд с помощью атрибута data-slide="prev" -->#}
+{#  <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>#}
+{#  <!-- Кнопка, осуществляющая переход на следующий слайд с помощью атрибута data-slide="next" -->#}
+{#  <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>#}
+{#</div>#}

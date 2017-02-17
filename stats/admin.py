@@ -16,13 +16,20 @@ class VenueAdmin(ImageCroppingMixin, ModelAdmin):
    search_fields = ('name',)
 
 
+class MatchAdmin(DefaultModelAdmin):
+   list_display = ('dbid', 'home_team', 'away_team', 'home_goals', 'away_goals', 'state', 'competition', 'round', 'start')
+   list_filter = ('season', 'competition')
+   search_fields = ('home_team__name', 'away_team__name')
+   date_hierarchy = 'start'
+
+
 register(StaticURL)
 register(Competition, CompetitionAdmin)
 register(Season)
 register(Round)
 register(Venue, VenueAdmin)
 register(Team)
-register(Match)
+register(Match, MatchAdmin)
 register(Region)
 register(RegionGroup)
 

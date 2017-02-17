@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'social_django',
     'easy_thumbnails',
     'image_cropping',
+    'adminsortable',
 
     'base',
     'stats',
-
+    'tote',
 ]
 
 MIDDLEWARE = [

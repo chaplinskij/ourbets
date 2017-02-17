@@ -6,10 +6,23 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
+from tote.models import FeaturedMatch
+
 
 class HomeView(TemplateView):
    template_name = 'home.html'
+   display_matches = 3
 
+   def get_context_data(self, **kwargs):
+      ctx=super(HomeView, self).get_context_data(**kwargs)
+      print "featured_matches"
+      ctx['featured_matches'] = FeaturedMatch.objects.all()[:self.display_matches]
+      print ctx['featured_matches']
+      return ctx
+
+
+class LiveScoreView(TemplateView):
+   template_name = 'live.html'
 
 class SettingsView(TemplateView):
    template_name = 'settings.html'
