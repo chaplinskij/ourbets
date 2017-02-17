@@ -6,3 +6,4 @@
 env/
 .idea/
 ourbets/settings/local.py
+media/*

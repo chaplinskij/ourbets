@@ -2,8 +2,11 @@ from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import (
    Model, CharField, ForeignKey, PositiveIntegerField, URLField, BooleanField,
-   IntegerField, DateTimeField, DecimalField, ManyToManyField, TextField
+   IntegerField, DateTimeField, DecimalField, ManyToManyField, TextField,
+   ImageField,
 )
+from image_cropping.fields import ImageRatioField
+
 
 class StaticURL(Model):
    url_name = URLField(_('flag URL'))
@@ -79,6 +82,8 @@ class Venue(Model):
    capacity = IntegerField(default=0)
    geo_lat = DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
    geo_lon = DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+   cover = ImageField(_('cover'), upload_to='venues', blank=True, null=True)
+   rectangle = ImageRatioField('cover', '1200x300')
 
    def __unicode__(self):
       return self.name

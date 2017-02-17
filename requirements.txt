@@ -3,3 +3,5 @@ python-social-auth==0.3.3
 django-social-auth==0.7.28
 social-auth-app-django==0.1.0
 pytz==2016.10
+easy-thumbnails==2.3
+git+https://github.com/jonasundderwolf/django-image-cropping.git@django-19
