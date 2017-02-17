@@ -1,6 +1,7 @@
 {% load staticfiles %}
 <div id="myCarousel" class="carousel slide carousel-fade " data-interval="4000" data-ride="carousel">
-  <!-- Индикаторы для карусели -->
+
+   <!-- Индикаторы для карусели -->
   <ol class="carousel-indicators">
     <!-- Перейти к 0 слайду карусели с помощью соответствующего индекса data-slide-to="0" -->
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -13,6 +14,18 @@
   <div class="carousel-inner">
     <!-- Слайды создаются с помощью контейнера с классом item, внутри которого помещается содержимое слайда -->
     <div class="active item">
+       <div class="game__block">
+          <div class="game__img game__img-left" style="background-image: url('{% static 'img/arsenal.png' %}')"></div>
+          <form class="game__score">
+            <div>
+              <input type="number" value="" class="game__score-input">
+              <span class="game__score-colon">:</span>
+              <input type="number" value="" class="game__score-input">
+            </div>
+            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
+          </form>
+          <div class="game__img game__img-right" style="background-image: url('{% static 'img/bayern.png' %}')"></div>
+        </div>
        <img src="{% static 'img/bg-related.png' %}" class=" related_match">
           <img src="{% static 'img/arena1.jpg' %}" class="img-responsive related_img">
        <div class="carousel-caption">
@@ -23,8 +36,22 @@
           <p>DniproArena</p>
        </div>
     </div>
+
+
     <!-- Слайд №2 -->
     <div class="item">
+       <div class="game__block">
+          <div class="game__img game__img-left"></div>
+          <form class="game__score">
+            <div>
+              <input type="number" value="" class="game__score-input">
+              <span class="game__score-colon">:</span>
+              <input type="number" value="" class="game__score-input">
+            </div>
+            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
+          </form>
+          <div class="game__img game__img-right"></div>
+        </div>
 
        <img src="{% static 'img/bg-related.png' %}" class=" related_match">
        <img src="{% static 'img/arena2.jpg' %}" class="img-responsive related_img">
@@ -39,6 +66,18 @@
     </div>
     <!-- Слайд №3 -->
     <div class="item">
+       <div class="game__block">
+          <div class="game__img game__img-left"></div>
+          <form class="game__score">
+            <div>
+              <input type="number" value="" class="game__score-input">
+              <span class="game__score-colon">:</span>
+              <input type="number" value="" class="game__score-input">
+            </div>
+            <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
+          </form>
+          <div class="game__img game__img-right"></div>
+        </div>
        <img src="{% static 'img/bg-related.png' %}" class=" related_match">
           <img src="{% static 'img/arena3.jpg' %}" class="img-responsive related_img">
        <div class="carousel-caption">

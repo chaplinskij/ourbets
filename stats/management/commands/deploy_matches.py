@@ -10,16 +10,18 @@ class Command(BaseCommand):
 
    def add_arguments(self, parser):
       parser.add_argument('-y', '--year', dest='year', type=int)
+      parser.add_argument('-m', '--month', dest='month', type=int)
       parser.add_argument('-d', '--database', dest='database', action='store_true')
 
    def handle(self, *args, **options):
       year = options['year']
+      month = options.get('month', 1) or 1
       is_db = options['database']
 
       if is_db:
          self.upload_from_db()
       else:
-         self.upload_from_api(year)
+         self.upload_from_api(year, month)
 
    def upload_from_db(self):
       cs = Crowdscores()
@@ -28,9 +30,9 @@ class Command(BaseCommand):
          cs.update_matches(params=None, data=data)
 
 
-   def upload_from_api(self, year):
+   def upload_from_api(self, year, from_month):
       _num_days = 7
-      date_start = datetime(year, 1, 1)
+      date_start = datetime(year, from_month, 1)
       date_end = datetime(year+1, 1, 1) if year<datetime.now().year else datetime.now() + timedelta(days=30)
 
       cs = Crowdscores()

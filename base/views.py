@@ -73,3 +73,7 @@ def password(request):
     else:
         form = PasswordForm(request.user)
     return render(request, 'password.html', {'form': form})
+
+
+class ProfileView(TemplateView):
+   template_name = 'profile.html'

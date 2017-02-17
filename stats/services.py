@@ -133,9 +133,14 @@ class Crowdscores(object):
                   'geo_lon': geo_lon
                }
             )
-
-         flag, _ = StaticURL.objects.get_or_create(url_name=item['flagUrl'])
-         shirt, _ = StaticURL.objects.get_or_create(url_name=item['shirtUrl'])
+         try:
+            flag, _ = StaticURL.objects.get_or_create(url_name=item.get('flagUrl'))
+         except:
+            flag = None
+         try:
+            shirt, _ = StaticURL.objects.get_or_create(url_name=item.get('shirtUrl'))
+         except:
+            shirt = None
          Team.objects.update_or_create(
             dbid=item['dbid'],
             defaults={
