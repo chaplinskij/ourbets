@@ -1,8 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'site.html' %}
 
 {% block content %}
+   <div> м</div>
+   {% include '_carousel.html' %}
 
-<h1>Hello!!!</h1>
+   <div style="padding-bottom: 800px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid consectetur debitis doloremque facere illo maiores numquam odio possimus quam quos suscipit veniam, voluptatum? Blanditiis dolores inventore laborum rerum tempore.</div>
+
+   <h1>Hello!!!</h1>
 {% if user.username %}
    <div>
       <ul>

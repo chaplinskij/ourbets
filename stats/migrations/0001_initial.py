@@ -9,7 +9,7 @@ from os.path import join, dirname, abspath
 
 
 def load_fixture(apps, schema_editor):
-   call_command('loaddata', abspath(join(dirname(__file__), '../fixtures/crowdscores.json')))
+    call_command('loaddata', abspath(join(dirname(__file__), '../fixtures/crowdscores.json')))
 
 
 class Migration(migrations.Migration):
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
                 ('name', models.CharField(max_length=40, verbose_name='name')),
                 ('short_name', models.CharField(max_length=15, verbose_name='short name')),
-                ('full_name', models.CharField(max_length=40, verbose_name='full name')),
+                ('full_name', models.CharField(max_length=60, verbose_name='full name')),
                 ('ordering', models.IntegerField(verbose_name='ordering')),
                 ('show_league', models.BooleanField(verbose_name='show league tables')),
                 ('show_assists', models.BooleanField(verbose_name='show assists stats')),
@@ -65,10 +65,10 @@ class Migration(migrations.Migration):
             name='MatchState',
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('label', models.CharField(max_length=32, verbose_name='name')),
-                ('short_name', models.CharField(max_length=4, verbose_name='short code')),
-                ('medium_name', models.CharField(max_length=16, verbose_name='medium name')),
-                ('long_name', models.CharField(max_length=32, verbose_name='long name')),
+                ('label', models.CharField(max_length=60, verbose_name='name')),
+                ('short_name', models.CharField(max_length=10, verbose_name='short code')),
+                ('medium_name', models.CharField(max_length=30, verbose_name='medium name')),
+                ('long_name', models.CharField(max_length=60, verbose_name='long name')),
                 ('length', models.IntegerField(blank=True, null=True)),
                 ('offset', models.IntegerField(blank=True, null=True)),
                 ('min_offset', models.IntegerField(blank=True, null=True, verbose_name='min real offset')),
@@ -95,7 +95,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name', models.CharField(max_length=60, verbose_name='name')),
                 ('ordering', models.IntegerField(verbose_name='ordering')),
             ],
         ),
@@ -104,7 +104,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name', models.CharField(max_length=60, verbose_name='name')),
                 ('ordering', models.IntegerField(verbose_name='ordering')),
             ],
         ),
@@ -114,7 +114,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
                 ('name', models.CharField(max_length=40, verbose_name='name')),
-                ('full_name', models.CharField(max_length=40, verbose_name='full name')),
+                ('full_name', models.CharField(max_length=60, verbose_name='full name')),
                 ('active', models.BooleanField(verbose_name='active')),
                 ('has_league', models.BooleanField(verbose_name='has league tables')),
                 ('has_assists', models.BooleanField(verbose_name='has assists stats')),
@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name', models.CharField(max_length=60, verbose_name='name')),
                 ('date_start', models.DateTimeField()),
                 ('date_end', models.DateTimeField()),
             ],
@@ -145,9 +145,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
-                ('name', models.CharField(max_length=32, verbose_name='name')),
-                ('short_name', models.CharField(max_length=16, verbose_name='short name')),
-                ('short_code', models.CharField(max_length=4, verbose_name='short code')),
+                ('name', models.CharField(max_length=60, verbose_name='name')),
+                ('short_name', models.CharField(max_length=30, verbose_name='short name')),
+                ('short_code', models.CharField(max_length=10, verbose_name='short code')),
                 ('is_national', models.BooleanField(verbose_name='active')),
                 ('show_league', models.BooleanField(verbose_name='show league tables')),
                 ('show_assists', models.BooleanField(verbose_name='show assists stats')),
@@ -162,7 +162,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('dbid', models.PositiveIntegerField(verbose_name='external id')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
+                ('name', models.CharField(max_length=60, verbose_name='name')),
                 ('capacity', models.IntegerField(default=0)),
                 ('geo_lat', models.DecimalField(blank=True, decimal_places=6, max_digits=9, null=True)),
                 ('geo_lon', models.DecimalField(blank=True, decimal_places=6, max_digits=9, null=True)),

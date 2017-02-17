@@ -1,0 +1,48 @@
+{% load staticfiles %}
+
+   <!--// Wrapper //-->
+   <div>
+      <header id="mainheader" class="header-absolute">
+         <!--// TopBar //-->
+         <div class="topbar">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <ul class="kode-userinfo">
+                        <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-sign-in"></i> Login</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModalTwo"><i class="fa fa-user-plus"></i> Register</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--// TopBaar //-->
+         <div class="header-8">
+            <div class="container">
+               <!--LOGO START-->
+               <div class="logo">
+                  <a href="{% url 'home' %}">
+                     <img src="{% static 'img/logo.svg' %}" alt="">
+                  </a>
+               </div>
+               <!--LOGO END-->
+               <!--NAVIGATION START-->
+               <div class="navigation">
+                  <ul>
+                     <li><a href="#home">Home</a></li>
+                     <li><a href="#about">About</a></li>
+                     <li><a href="#contact">Contact</a></li>
+                     <li class="last"><a href="#">contact</a></li>
+                  </ul>
+               </div>
+               <!--NAVIGATION END-->
+            </div>
+         </div>
+      </header>
+      <div class="subheader">
+{#         <img src="{% static 'img/toolbar.png' %}" alt="">#}
+      </div>
+      <!--// SubHeader //-->
+   </div>

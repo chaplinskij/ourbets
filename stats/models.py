@@ -11,7 +11,7 @@ class StaticURL(Model):
 
 class RegionGroup(Model):
    dbid = PositiveIntegerField(_('external id'))
-   name = CharField(_('name'), max_length=40)
+   name = CharField(_('name'), max_length=60)
    ordering = IntegerField(_('ordering'))
    flag = ForeignKey(StaticURL, related_name='region_group_flags')
 
@@ -21,7 +21,7 @@ class RegionGroup(Model):
 
 class Region(Model):
    dbid = PositiveIntegerField(_('external id'))
-   name = CharField(_('name'), max_length=40)
+   name = CharField(_('name'), max_length=60)
    ordering = IntegerField(_('ordering'))
    flag = ForeignKey(StaticURL, related_name='region_flags')
    group = ForeignKey(RegionGroup, related_name='regions')
@@ -34,7 +34,7 @@ class Competition(Model):
    dbid = PositiveIntegerField(_('external id'))
    name = CharField(_('name'), max_length=40)
    short_name = CharField(_('short name'), max_length=15)
-   full_name = CharField(_('full name'), max_length=40)
+   full_name = CharField(_('full name'), max_length=60)
    ordering = IntegerField(_('ordering'))
    show_league = BooleanField(_('show league tables'))
    show_assists = BooleanField(_('show assists stats'))
@@ -49,7 +49,7 @@ class Competition(Model):
 
 class Season(Model):
    dbid = PositiveIntegerField(_('external id'))
-   name = CharField(_('name'), max_length=40)
+   name = CharField(_('name'), max_length=60)
    date_start = DateTimeField()
    date_end = DateTimeField()
 
@@ -60,7 +60,7 @@ class Season(Model):
 class Round(Model):
    dbid = PositiveIntegerField(_('external id'))
    name = CharField(_('name'), max_length=40)
-   full_name = CharField(_('full name'), max_length=40)
+   full_name = CharField(_('full name'), max_length=60)
    active = BooleanField(_('active'))
    has_league = BooleanField(_('has league tables'))
    has_assists = BooleanField(_('has assists stats'))
@@ -75,7 +75,7 @@ class Round(Model):
 
 class Venue(Model):
    dbid = PositiveIntegerField(_('external id'))
-   name = CharField(_('name'), max_length=40)
+   name = CharField(_('name'), max_length=60)
    capacity = IntegerField(default=0)
    geo_lat = DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
    geo_lon = DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
@@ -86,9 +86,9 @@ class Venue(Model):
 
 class Team(Model):
    dbid = PositiveIntegerField(_('external id'))
-   name = CharField(_('name'), max_length=32)
-   short_name = CharField(_('short name'), max_length=16)
-   short_code = CharField(_('short code'), max_length=4)
+   name = CharField(_('name'), max_length=60)
+   short_name = CharField(_('short name'), max_length=30)
+   short_code = CharField(_('short code'), max_length=10)
    is_national = BooleanField(_('active'))
    show_league = BooleanField(_('show league tables'))
    show_assists = BooleanField(_('show assists stats'))
@@ -104,10 +104,10 @@ class Team(Model):
 
 class MatchState(Model):
    id = IntegerField(primary_key=True)
-   label = CharField(_('name'), max_length=32)
-   short_name = CharField(_('short code'), max_length=4)
-   medium_name = CharField(_('medium name'), max_length=16)
-   long_name = CharField(_('long name'), max_length=32)
+   label = CharField(_('name'), max_length=60)
+   short_name = CharField(_('short code'), max_length=10)
+   medium_name = CharField(_('medium name'), max_length=30)
+   long_name = CharField(_('long name'), max_length=60)
    length = IntegerField(null=True, blank=True)
    offset = IntegerField(null=True, blank=True)
    min_offset = IntegerField(_('min real offset'), null=True, blank=True)

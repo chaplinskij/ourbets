@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <title>Title</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   {% block site-title %}
+   <title>OurBets</title>
+   {% endblock %}
+   {% block site-meta %}{% endblock %}
+   {% block site-media %}{% endblock %}
+   {% block site-css %}{% endblock %}
+   {% block css %}{% endblock %}
+   {% block site-js %}{% endblock %}
+   {% block js %}{% endblock %}
 </head>
 <body>
-{% block content %}
+{% block body %}
 {% endblock %}
 </body>
 </html>
