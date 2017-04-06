@@ -63,6 +63,10 @@
 	margin: 25px 0px 25px 25px;
 	width: 100%;
 }
+.flag_small {
+	width: 24px;
+	height: 24px;
+}
 .sticky .navbar-nav > li > a{
 	padding:27px 14px
 }
@@ -556,6 +560,51 @@ input::-webkit-inner-spin-button {
 .about__text {
 	text-align: justify;
 }
+
+
+
+/*.jasgrid{padding:0;}*/
+.box-item {
+    float: left;
+    opacity: 1;
+    overflow: hidden;
+    position: relative;
+	margin: 10px;
+}
+
+.box-item img {
+    width: 100%;
+}
+
+.box-item .box-post span.meta {
+    font-family:  sans-serif;
+    font-size: 12px;
+    color: #fff;
+    margin-top: 15px;
+    display: block;
+}
+
+.box-item .box-post span.meta span {
+    margin-right: 15px;
+}
+
+.box-item .box-post {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    padding: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.box-item .box-post h1..post-title {
+   font-size:10pt;
+}
+
+
+
 @media screen and (max-width: 900px) {
 	.game__score-input{
 		width: 45px;

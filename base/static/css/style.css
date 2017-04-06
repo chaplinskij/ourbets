@@ -1895,7 +1895,7 @@ blockquote {
 	-webkit-box-shadow:0px 10px 10px 0px rgba(0,0,0,0.3);
 }
 .kode-inner-fixer .kode-fixer-counter h2 {
-	color: #ffffff;
+	color: #111;
 	padding: 15px 10px;
 }
 .kode-fixer-list {
@@ -1919,7 +1919,7 @@ blockquote {
 }
 .table-head li:first-child { width: 32%; }
 .table-head li h5 {
-	color: #ffffff;
+	color: #111;
 	text-transform: uppercase;
 	margin: 0px;
 }
@@ -1932,31 +1932,38 @@ blockquote {
 	margin-right: 10px;
 	padding: 4px 0px 0px 0px;
 	border-radius: 2px;
+	text-decoration: none;
 }
 .fixer-pagination a:hover {
-	background-color: #ffffff;
+	background-color: #efefef;
+	border: 1px solid #afafaf;
+	color: #afafaf;
 }
 .table-body:nth-child(even) li {
-	background-color: #333333;
+	background-color: #efefef;
 }
 .table-body:nth-child(even) li {
-	border-left: 1px solid #404040;
+	border-left: 1px solid #afafaf;
 }
 .table-body li {
 	text-align: center;
-	background-color: #404040;
-	color: #ffffff;
-	padding: 25px 0px;
+	background-color: #f3f2f6;
+	color: #111;
+	padding: 5px 0px;
+	border-left: 1px solid #afafaf;
 }
 .list-thumb {
 	display: inline-block;
-	color: #ffffff;
+	color: #111;
 }
 .list-thumb img { margin-right: 8px; }
 .table-body li span {
 	display: inline-block;
 	font-size: 20px;
 	width: 22%;
+}
+.table-body li div {
+	padding: 5px 0;
 }
 .table-body li small { text-transform: uppercase; }
 .fixer-btn a {
@@ -1968,7 +1975,7 @@ blockquote {
 	font-weight: bold;
 }
 .table-body li.fixer-btn { width: 26%; }
-.fixer-btn a:hover { color: #ffffff; }
+.fixer-btn a:hover { color: #888; }
 
 /* Fixer List css ends */
 

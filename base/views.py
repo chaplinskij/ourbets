@@ -1,24 +1,57 @@
+from datetime import datetime
+from itertools import groupby
+
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+from django.db.models import Max, Min
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
+from stats.models import Match
 from tote.models import FeaturedMatch
 
 
 class HomeView(TemplateView):
    template_name = 'home.html'
-   display_matches = 3
+   display_matches = 4
 
    def get_context_data(self, **kwargs):
       ctx=super(HomeView, self).get_context_data(**kwargs)
-      print "featured_matches"
       ctx['featured_matches'] = FeaturedMatch.objects.all()[:self.display_matches]
-      print ctx['featured_matches']
       return ctx
+
+
+class DateMatchesView(TemplateView):
+   template_name = '_matches.html'
+
+   def get_context_data(self, **kwargs):
+      ctx=super(DateMatchesView, self).get_context_data(**kwargs)
+      rep_date = self.request.GET.get('date')
+      rep_date = datetime.strptime(rep_date, "%Y%m%d").date() if rep_date else datetime.now().date()
+      matches = Match.objects.filter(
+         start__date=rep_date,
+         competition__featured_competition__isnull=False
+      ).order_by('competition', 'start')
+      competitions={}
+      for k, group in groupby(matches, lambda x: x.competition):
+         competitions[k]=list(group)
+
+      ctx['competitions'] = competitions
+      ctx['previous_date'] = Match.objects.filter(
+         start__date__lt=rep_date,
+         competition__featured_competition__isnull=False
+      ).aggregate(rep_date=Max('start'))
+      ctx['next_date'] = Match.objects.filter(
+         start__date__gt=rep_date,
+         competition__featured_competition__isnull=False
+      ).aggregate(rep_date=Min('start'))
+      ctx['current_date'] = rep_date
+      print ctx
+      return ctx
+
 
 
 class LiveScoreView(TemplateView):

@@ -52,7 +52,7 @@ class Competition(Model):
       return self.flag.url_name
 
    def __unicode__(self):
-      return self.name
+      return '%s - %s' % (self.region.name, self.name)
 
 
 class Season(Model):
@@ -190,6 +190,12 @@ class Match(Model):
 
    def __unicode__(self):
       return '%s - %s (%s)' % (self.home_team.name, self.away_team.name, self.start)
+
+   def home_goals_display(self):
+      return self.home_goals if self.end else '?'
+
+   def away_goals_display(self):
+      return self.away_goals if self.end else '?'
 
 
 class CrowdscoresResponse(Model):

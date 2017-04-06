@@ -1,0 +1,48 @@
+
+   <div class="kode-fixer-list" >
+      <ul class="table-head " >
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a"><h4>Upcoming Match</h4></li>
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a"> <h4>{{ current_date|date:"Y-m-d" }}</h4> </li>
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a">
+            <h4>Venue
+            <span class="fixer-pagination">
+               <a href="#" class="fa fa-angle-right change-date-match" data-date="{{ next_date.rep_date|date:"Ymd" }}"></a>
+               <a href="#" class="fa fa-angle-left change-date-match" data-date="{{ previous_date.rep_date|date:"Ymd"}}"></a>
+            </span>
+            </h4>
+         </li>
+      </ul>
+
+   {% for competition, matches in competitions.items %}
+      <ul class="table-head "  >
+         <li style="text-align: left; border-left: 1px solid #afafaf;">
+            <img class="flag_small" src="{{ competition.flag_url }}">
+            {{ competition.name }}
+         </li>
+      </ul>
+      {% for match in matches %}
+      <ul class="table-body">
+         <li>
+            <div class="col-md-5 text-right">
+               <a href="#" class="list-thumb"><img class="flag_small" src="{{ match.home_team.shirt.url_name }}" alt="">{{ match.home_team.short_name }}</a>
+            </div>
+            <div class="col-md-2 text-center">
+               <strong>{{ match.home_goals_display }} : {{ match.away_goals_display }}</strong>
+            </div>
+            <div class="col-md-5 text-left">
+               <a href="#" class="list-thumb"><img class="flag_small" src="{{ match.away_team.shirt.url_name }}" alt="">{{ match.away_team.short_name }}</a>
+            </div>
+         </li>
+         <li><small>{{ match.start|date:"H:i" }}</small></li>
+         <li><small>{{ match.venue.name }}</small></li>
+      </ul>
+      {% endfor %}
+   {% endfor %}
+
+   </div>
+
+
+
+
+
+

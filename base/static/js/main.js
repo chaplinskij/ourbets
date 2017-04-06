@@ -2,14 +2,29 @@
  * Created by vitalik on 12.02.17.
  */
 
-jQuery(document).ready(function(){
-	"use strict";
 
-if($('.header-absolute').length){
+"use strict";
+$(function () {
+	let update_date_matches = function(date){
+		var $date_matches = $('.date-matches');
+		$.ajax({
+			url: '/match/date/?date=' + date,
+			success: function (data) {
+				$date_matches.html(data);
+				$('.change-date-match').on('click', function (e) {
+					var $el = $(this);
+					e.preventDefault();
+					update_date_matches($el.data('date'));
+				});
+			}
+		});
+	};
 
-	var stickyNavTop = 40;
+   if($('.header-absolute').length){
 
-	var stickyNav = function(){
+	   var stickyNavTop = 40;
+
+	   var stickyNav = function(){
 			var scrollTop = $(window).scrollTop();
 			if (scrollTop > stickyNavTop) {
 				$('.header-absolute').addClass('sticky');
@@ -24,5 +39,6 @@ if($('.header-absolute').length){
 		});
 	}
 
+   update_date_matches('20170407');
 
-})
+});
