@@ -13,14 +13,14 @@
          </li>
       </ul>
 
-   {% for competition, matches in competitions.items %}
+   {% for competition in competitions %}
       <ul class="table-head "  >
          <li style="text-align: left; border-left: 1px solid #afafaf;">
             <img class="flag_small" src="{{ competition.flag_url }}">
             {{ competition.name }}
          </li>
       </ul>
-      {% for match in matches %}
+      {% for match in competition.matches %}
       <ul class="table-body">
          <li>
             <div class="col-md-5 text-right">

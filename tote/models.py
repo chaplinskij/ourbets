@@ -21,7 +21,9 @@ class FeaturedMatch(Sortable):
       return unicode(self.match)
 
 
-class FeaturedCompetition(Model):
+class FeaturedCompetition(Sortable):
+   class Meta(Sortable.Meta):
+      ordering = ['order']
 
    competition = OneToOneField(Competition, related_name='featured_competition')
 

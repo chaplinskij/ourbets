@@ -12,7 +12,7 @@ class FeaturedMatchAdmin(SortableAdmin):
    raw_id_fields = ('match',)
 
 
-class FeaturedCompetitionAdmin(DefaultModelAdmin):
+class FeaturedCompetitionAdmin(SortableAdmin):
    raw_id_fields = ('competition',)
 
 register(FeaturedMatch, FeaturedMatchAdmin)

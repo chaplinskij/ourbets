@@ -34,10 +34,11 @@ class DateMatchesView(TemplateView):
       matches = Match.objects.filter(
          start__date=rep_date,
          competition__featured_competition__isnull=False
-      ).order_by('competition', 'start')
-      competitions={}
+      ).order_by('competition__featured_competition__order', 'start')
+      competitions=[]
       for k, group in groupby(matches, lambda x: x.competition):
-         competitions[k]=list(group)
+         k.matches=list(group)
+         competitions.append(k)
 
       ctx['competitions'] = competitions
       ctx['previous_date'] = Match.objects.filter(
@@ -49,7 +50,6 @@ class DateMatchesView(TemplateView):
          competition__featured_competition__isnull=False
       ).aggregate(rep_date=Min('start'))
       ctx['current_date'] = rep_date
-      print ctx
       return ctx
 
 
