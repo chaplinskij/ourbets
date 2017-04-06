@@ -12,7 +12,7 @@ from social_django.models import UserSocialAuth
 
 from base.forms import HomePageForm
 from stats.models import Match
-from tote.models import FeaturedMatch, Tournament
+from tote.models import FeaturedMatch, Tournament, Forecast
 
 
 class HomeView(TemplateView):
@@ -24,11 +24,16 @@ class HomeView(TemplateView):
    def get_context_data(self, **kwargs):
       ctx=super(HomeView, self).get_context_data(**kwargs)
       ctx['featured_matches'] = FeaturedMatch.objects.all()[:self.display_matches]
-      print self.request.user
-      ctx['tournaments'] = Tournament.objects.filter(
-         Q(category=Tournament._open) | Q(tournamenttable__user=self.request.user)
-      ).distinct()
-      print ctx['tournaments']
+      user = self.request.user
+      if user.is_anonymous():
+         ctx['tournaments'] = Tournament.objects.filter(
+            category=Tournament._open
+         )
+
+      else:
+         ctx['tournaments'] = Tournament.objects.filter(
+            Q(category=Tournament._open) | Q(tournamenttable__user=user)
+         ).distinct()
       return ctx
 
 
@@ -107,11 +112,14 @@ class SettingsView(TemplateView):
 
       matches = Match.objects.filter(
          tournaments_matches__forecasts__user=user
-      ).order_by('competition__featured_competition__order', 'start')
-
+      ).prefetch_related('tournaments_matches__forecasts').order_by('competition__featured_competition__order', 'start')
       competitions = []
       for k, group in groupby(matches, lambda x: x.competition):
          k.matches = list(group)
+         for m in k.matches:
+            forecast = Forecast.objects.filter(user=user, t_match__match=m)[0]
+            m.forecast_home=forecast.home_goals
+            m.forecast_away=forecast.away_goals
          competitions.append(k)
 
       ctx['competitions'] = competitions

@@ -1,7 +1,9 @@
 {% load i18n staticfiles %}
+<div style="margin-bottom: 200px">
 <h1 class="page-header">Social accounts</h1>
   <ul>
   <li style="display:inline">
+  <div style="float:left; margin:10px">
      <h3><img src="{% static  'img/ico/gh.png'%}"> GitHub</h3>
      {% if github_login %}
        <p>Connected as <a href="https://github.com/{{ github_login.extra_data.login }}/" target="_blank">{{ github_login.extra_data.login }}</a></p>
@@ -17,8 +19,10 @@
      {% else %}
        <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
      {% endif %}
+  </div>
   </li>
   <li style="display:inline">
+  <div style="float:left; margin:10px">
      <h3><img src="{% static  'img/ico/tw.png'%}"> Twitter</h3>
      {% if twitter_login %}
        <p>Connected as <a href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/" target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a></p>
@@ -34,8 +38,10 @@
      {% else %}
        <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
      {% endif %}
+  </div>
   </li>
   <li style="display:inline">
+  <div style="float:left; margin:10px">
      <h3><img src="{% static  'img/ico/fb.png'%}"> Facebook</h3>
      {% if facebook_login %}
        <p>Connected as <a href="https://facebook.com/{{ facebook_login.extra_data.id }}/" target="_blank">{{ facebook_login.extra_data.id }}</a></p>
@@ -51,8 +57,10 @@
      {% else %}
        <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
      {% endif %}
+  </div>
   </li>
   <li style="display:inline">
+  <div style="float:left; margin:10px">
      <h3><img src="{% static  'img/ico/vk.png'%}"> VKontakte</h3>
      {% if vk_login %}
        <p>Connected as <a href="https://vk.com/{{ vk_login.extra_data.screen_name }}" target="_blank">{{ vk_login.extra_data.screen_name }}</a></p>
@@ -68,8 +76,10 @@
      {% else %}
        <a href="{% url 'social:begin' 'vk-oauth2' %}">Connect to VKontakte</a>
      {% endif %}
+  </div>
   </li>
   <li style="display:inline">
+  <div style="float:left; margin:10px">
       <h3><img src="{% static  'img/ico/g+.png'%}"> Google</h3>
      {% if google_login %}
        <p>Connected as <a href="https://plus.google.com/u/0/{{ google_login.extra_data.id }}" target="_blank">{{ google_login.extra_data.username }}</a></p>
@@ -85,5 +95,7 @@
      {% else %}
        <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
      {% endif %}
+  </div>
   </li>
   </ul>
+</div>

@@ -1,5 +1,5 @@
 {% load i18n staticfiles %}
-<h1 class="page-header">My Forecasts</h1>
+<div ><h1 class="page-header">My Forecasts</h1>
 
 <div class="kode-fixer-list" >
       <ul class="table-head " >
@@ -29,9 +29,9 @@
          <li style="font-size: 20px;">{{ match.start|date:"Y-m-d H:i" }}</li>
          <li><form class="game__score">
               <div>
-                 <input type="number" value="" class="game__score-input">
+                 <input type="number" value="{{ match.forecast_home }}" class="game__score-input">
                  <span class="game__score-colon">:</span>
-                 <input type="number" value="" class="game__score-input">
+                 <input type="number" value="{{ match.forecast_away }}" class="game__score-input">
               </div>
               <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
            </form></li>
@@ -40,3 +40,4 @@
    {% endfor %}
 
    </div>
+</div>
