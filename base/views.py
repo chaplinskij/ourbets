@@ -6,13 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
-from django.db.models import Max, Min
+from django.db.models import Max, Min, Q
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
 from base.forms import HomePageForm
 from stats.models import Match
-from tote.models import FeaturedMatch
+from tote.models import FeaturedMatch, Tournament
 
 
 class HomeView(TemplateView):
@@ -24,6 +24,11 @@ class HomeView(TemplateView):
    def get_context_data(self, **kwargs):
       ctx=super(HomeView, self).get_context_data(**kwargs)
       ctx['featured_matches'] = FeaturedMatch.objects.all()[:self.display_matches]
+      print self.request.user
+      ctx['tournaments'] = Tournament.objects.filter(
+         Q(category=Tournament._open) | Q(tournamenttable__user=self.request.user)
+      ).distinct()
+      print ctx['tournaments']
       return ctx
 
 
@@ -99,6 +104,17 @@ class SettingsView(TemplateView):
       ctx['vk_login'] = vk_login
       ctx['google_login'] = google_login
       ctx['can_disconnect'] = can_disconnect
+
+      matches = Match.objects.filter(
+         tournaments_matches__forecasts__user=user
+      ).order_by('competition__featured_competition__order', 'start')
+
+      competitions = []
+      for k, group in groupby(matches, lambda x: x.competition):
+         k.matches = list(group)
+         competitions.append(k)
+
+      ctx['competitions'] = competitions
 
       return ctx
 

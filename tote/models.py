@@ -33,9 +33,17 @@ class FeaturedCompetition(Sortable):
 
 
 class Tournament(Model):
+   (_none, _open, _limited, ) = xrange(3)
+
+   CATEGORIES = (
+      (_open, _('Open')),
+      (_limited, _('Limited')),
+   )
+
    name = CharField(_('name'), max_length=60)
    creator = ForeignKey(User)
    date_created = DateTimeField(auto_now_add=True)
+   category = IntegerField(_("Tournament type"), choices=CATEGORIES,default=_open)
 
    def __unicode__(self):
       return self.name

@@ -1,0 +1,42 @@
+{% load i18n staticfiles %}
+<h1 class="page-header">My Forecasts</h1>
+
+<div class="kode-fixer-list" >
+      <ul class="table-head " >
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a"><h4>Upcoming Match</h4></li>
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a"> <h4>Match Date</h4> </li>
+         <li style="border-bottom: 1px solid #ccc; background-color: #98d82a"><h4>Forecast</h4></li>
+      </ul>
+
+   {% for competition in competitions %}
+      <ul class="table-head "  >
+         <li style="text-align: left; border-left: 1px solid #afafaf; font-size: 24px;">
+            <img class="flag_small" src="{{ competition.flag_url }}">
+            {{ competition.name }}
+         </li>
+      </ul>
+      {% for match in competition.matches %}
+      <ul class="table-body">
+         <li>
+            <div class="col-md-5 text-right">
+               <a href="#" style="font-size: 18px;" class="list-thumb"><img class="flag_small" src="{{ match.home_team.shirt.url_name }}" alt="">{{ match.home_team.short_name }}</a>
+            </div>
+            <div class="col-md-2 text-center">:</div>
+            <div class="col-md-5 text-left">
+               <a href="#" style="font-size:18px;" class="list-thumb"><img class="flag_small" src="{{ match.away_team.shirt.url_name }}" alt="">{{ match.away_team.short_name }}</a>
+            </div>
+         </li>
+         <li style="font-size: 20px;">{{ match.start|date:"Y-m-d H:i" }}</li>
+         <li><form class="game__score">
+              <div>
+                 <input type="number" value="" class="game__score-input">
+                 <span class="game__score-colon">:</span>
+                 <input type="number" value="" class="game__score-input">
+              </div>
+              <input type="button" value="Forecast" name="submit-bet" class="game__score-button">
+           </form></li>
+      </ul>
+      {% endfor %}
+   {% endfor %}
+
+   </div>
