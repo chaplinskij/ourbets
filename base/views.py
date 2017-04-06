@@ -1,7 +1,7 @@
 from datetime import datetime
 from itertools import groupby
 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -10,6 +10,7 @@ from django.db.models import Max, Min
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
+from base.forms import HomePageForm
 from stats.models import Match
 from tote.models import FeaturedMatch
 
@@ -17,6 +18,8 @@ from tote.models import FeaturedMatch
 class HomeView(TemplateView):
    template_name = 'home.html'
    display_matches = 4
+   # form_class = HomePageForm
+
 
    def get_context_data(self, **kwargs):
       ctx=super(HomeView, self).get_context_data(**kwargs)

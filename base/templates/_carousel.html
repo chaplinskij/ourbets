@@ -36,7 +36,7 @@
            <h3>{{ featured_match.match.home_team.name}}</h3>
            <div class="divider"><div class="divider-content">VS</div></div>
            <h3>{{ featured_match.match.away_team.name }}</h3>
-           <p>12 FEBRUARY 2017</p>
+           <p>{{ featured_match.match.start|date:"d F Y" }}</p>
            <p>{{ featured_match.match.venue.name }}</p>
         </div>
      </div>
