@@ -71,6 +71,7 @@ class DateMatchesView(TemplateView):
 class LiveScoreView(TemplateView):
    template_name = 'live.html'
 
+
 class SettingsView(TemplateView):
    template_name = 'profile.html'
 
