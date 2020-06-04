@@ -63,6 +63,7 @@ class DateMatchesView(TemplateView):
          competition__featured_competition__isnull=False
       ).aggregate(rep_date=Min('start'))
       ctx['current_date'] = rep_date
+      a=1
       return ctx
 
 
